@@ -1,39 +1,90 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 import time
 
-driver = webdriver.Chrome()
-driver.get("https://demoqa.com/automation-practice-form")
-driver.maximize_window()
+def get_driver():
+    options = webdriver.ChromeOptions()
+    options.add_argument("start-maximized")
+    options.add_argument("--disable-gpu")
+    #options.add_argument("--headless")
+    #options.add_argument("--disable-gpu")
+    #options.add_argument("--incognito")
+    #options.add_argument("--window-size= 1000,700")
+    options.add_argument("--incognito")
 
-time.sleep(2)
-nombre = driver.find_element(By.ID,"firstName")
-nombre.send_keys("Daniel")
+    driver = webdriver.Chrome(options=options)
+    driver.get("https://demoqa.com/automation-practice-form")
+    return driver
 
-time.sleep(2)
-apellido = driver.find_element(By.ID,"lastName")
-apellido.send_keys("Pacheco")
+def datos_texto_formulario(driver):
+    datos: dict[str, str] = {
+        "firstName": "Daniel",
+        "lastName": "Pacheco",
+        "userEmail": "danielpacosta93@gmail.com",
+        "userNumber": "3105816209",
+        "subjectsInput": "Automatizaciones",
+        "uploadPicture": "C:/Users/ADMIN/OneDrive/Desktop/Selenium",
+        "currentAddress": "Calle 161 #16d-10",
+    }
+
+    for campo_id, valor in datos.items():
+        driver.find_element(By.ID, campo_id).send_keys(valor)
+        time.sleep(1)
+        
+    subjects = driver.find_element(By.ID, "subjectsInput")
+    subjects.send_keys("Automatizaciones")
+    subjects.send_keys(Keys.ENTER)
+    time.sleep(1)
+
+def seleccionar_genero(driver):
+    driver.find_element(By.XPATH, "//label[text()='Male']").click()
+    time.sleep(0.5)
+
+def seleccionar_hobbies(driver):
+    driver.find_element(By.XPATH, "//label[text()='Sports']").click()
+    driver.find_element(By.XPATH, "//label[text()='Music']").click()
+    time.sleep(0.5)
+
+def seleccionar_fecha_nacimiento(driver):
+    driver.find_element(By.ID, "dateOfBirthInput").click()
+    time.sleep(0.5)
+    driver.find_element(By.CLASS_NAME, "react-datepicker__month-select").send_keys("Enero")
+    driver.find_element(By.CLASS_NAME, "react-datepicker__year-select").send_keys("1993")
+    driver.find_element(By.XPATH, "//div[contains(@class, 'react-datepicker__day') and text()='3']").click()
+    time.sleep(0.5)
     
-time.sleep(2)
-email = driver.find_element(By.ID,"userEmail")
-email.send_keys("danielpacosta93@gmail.com")
+def seleccionar_imagen(driver):
+        driver.find_element(By.ID, "uploadPicture").send_keys("C:/Users/ADMIN/OneDrive/Desktop/Selenium")
+        time.sleep(1)
 
-time.sleep(2)
-movil = driver.find_element(By.ID,"userNumber")
-movil.send_keys("3105816209")
+def seleccionar_estado_y_ciudad(driver):
+    driver.find_element(By.ID, "state").click()
+    driver.find_element(By.XPATH, "//div[text()='NCR']").click()
+    time.sleep(0.5)
+    driver.find_element(By.ID, "city").click()
+    driver.find_element(By.XPATH, "//div[text()='Delhi']").click() 
+    time.sleep(0.5)
 
-time.sleep(2)
-temas = driver.find_element(By.ID,"subjectsInput")
-temas.send_keys("automatizaciones con selenium")
+def enviar_formulario(driver):
+    driver.save_screenshot("antes_de_enviar.png")
+    time.sleep(2)
+    driver.find_element(By.ID, "submit").click()
+    time.sleep(2)
+    driver.save_screenshot("despues_de_enviar.png")
+    
+    
+def main():
+    driver = get_driver()
+    datos_texto_formulario(driver)
+    seleccionar_genero(driver)
+    seleccionar_hobbies(driver)
+    seleccionar_fecha_nacimiento(driver)
+    seleccionar_estado_y_ciudad(driver)
+    seleccionar_imagen(driver)
+    enviar_formulario(driver)
+    driver.find_element(By.ID, "submit").click()
+    driver.quit()
 
-time.sleep(2)
-direccion = driver.find_element(By.ID,"currentAddress")
-direccion.send_keys("calle 161 #16d-10")
-
-entregar = driver.find_element(By.ID, "submit")
-entregar.click()
-
-
-time.sleep(5)
-driver.quit()
-
+if __name__ == "__main__":
+    main()
