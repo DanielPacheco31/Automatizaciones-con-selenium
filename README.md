@@ -1,58 +1,75 @@
-Pruebas de aceptacion con Selenium.
+📝 Descripción
+Este proyecto implementa una automatización completa del formulario "Practice Form" de DemoQA utilizando Selenium WebDriver y Python. La automatización incluye la navegación al sitio, el llenado de todos los campos del formulario, la selección de opciones en menús desplegables, la interacción con calendarios, la carga de archivos y el envío del formulario.
 
-Pasos del Taller:
+🛠️ Tecnologías Utilizadas
 
-Inicialización del WebDriver:
-Escriban el código para inicializar una instancia del WebDriver para el navegador que estén utilizando (ej., Chrome).
-Naveguen a la URL del formulario de práctica de DemoQA: https://demoqa.com/automation-practice-form.
-Maximicen la ventana del navegador para una mejor visualización.
-Llenar el Nombre y Apellido:
-Localizar el campo "First Name": Inspeccionen el elemento en la página web utilizando las herramientas de desarrollo del navegador (clic derecho > Inspeccionar o Inspect Element). Identifiquen un localizador único y robusto (ID, nombre, XPath, CSS Selector).
-Escriban el código para localizar este campo utilizando el método find_element() de Selenium.
-Utilicen el método send_keys() para ingresar un nombre de prueba (ej., "Juan").
-Localizar el campo "Last Name": Realicen el mismo proceso para el campo "Last Name" e ingresen un apellido de prueba (ej., "Pérez").
-Seleccionar el Género:
-Localizar los botones de radio de género: Inspeccionen los elementos de los botones de radio (Male, Female, Other). Observen sus atributos (tipo, valor, etc.).
-Elijan uno de los géneros (ej., "Male") y localicen su correspondiente botón de radio o el label asociado que al hacer clic selecciona el botón.
-Escriban el código para hacer clic en el botón de radio seleccionado utilizando el método click().
-Ingresar el Número de Teléfono:
-Localizar el campo "Mobile(10 Digits)": Inspeccionen el elemento y encuentren un localizador adecuado.
-Escriban el código para localizar este campo.
-Utilicen el método send_keys() para ingresar un número de teléfono de 10 dígitos (ej., "1234567890").
-Seleccionar la Fecha de Nacimiento:
-Localizar el campo "Date of Birth": Inspeccionen el campo que al hacer clic abre el calendario.
-Escriban el código para hacer clic en este campo para abrir el selector de fechas.
-Interactuar con el selector de fechas:
-Localicen el selector del mes y el año (generalmente dropdowns).
-Seleccionen un mes y un año deseados utilizando la clase Select si son elementos <select>, o haciendo clic en los elementos correspondientes.
-Localicen el día deseado en la cuadrícula del calendario (pueden necesitar usar XPath o CSS Selectors basados en el texto del día).
-Hagan clic en el día seleccionado.
-Seleccionar las Materias (Subjects):
-Localizar el campo "Subjects": Inspeccionen el campo que al escribir muestra sugerencias.
-Escriban el código para ingresar las primeras letras de una materia (ej., "Math"). Observen cómo aparecen las sugerencias.
-Localicen la sugerencia deseada (ej., "Maths") y hagan clic en ella para seleccionarla.
-Repitan este proceso para seleccionar otra materia (ej., "Physics").
-Seleccionar los Hobbies:
-Localizar los checkboxes de hobbies: Inspeccionen los checkboxes (Sports, Reading, Music) o sus labels asociados.
-Elijan uno o varios hobbies y localicen sus correspondientes checkboxes o labels.
-Escriban el código para hacer clic en los checkboxes seleccionados utilizando el método click().
-Subir un Archivo (Opcional si tienen un archivo de prueba):
-Localizar el botón "Choose File": Inspeccionen el elemento de tipo input con el atributo type="file".
-Escriban el código para localizar este elemento.
-Utilicen el método send_keys() para especificar la ruta completa a un archivo de prueba en su sistema. Nota: Por razones de seguridad del navegador, esta es la forma estándar de interactuar con los campos de carga de archivos.
-Ingresar la Dirección Actual:
-Localizar el campo "Current Address": Inspeccionen el elemento <textarea>.
-Escriban el código para localizar este campo.
-Utilicen el método send_keys() para ingresar una dirección de prueba.
-Seleccionar el Estado y la Ciudad:
-Localizar el dropdown de "State": Inspeccionen el elemento que al hacer clic muestra las opciones de estado. Puede ser un elemento <select> o un elemento interactivo que muestra una lista.
-Hagan clic en el campo para abrir las opciones.
-Localicen y hagan clic en un estado de su elección (ej., "NCR").
-Localizar el dropdown de "City": Realicen el mismo proceso para el campo de "City" después de haber seleccionado un estado (las opciones de ciudad dependen del estado seleccionado).
-Seleccionen una ciudad de su elección (ej., "Delhi").
-Enviar el Formulario:
-Localizar el botón "Submit": Inspeccionen el botón para enviar el formulario.
-Escriban el código para localizar este botón.
-Utilicen el método click() para enviar el formulario.
-Cerrar el Navegador:
-Finalmente, escriban el código para cerrar la instancia del WebDriver (driver.quit()).
+Python: Lenguaje de programación principal
+Selenium WebDriver: Framework para automatización de navegadores web
+Chrome WebDriver: Driver específico para el navegador Chrome
+
+🚀 Características
+
+Inicialización automática del WebDriver con opciones personalizadas
+Navegación a la URL del formulario y maximización de la ventana
+Llenado de campos de texto (nombre, apellido, email, número de teléfono)
+Selección de género mediante radio buttons
+Selección de fecha de nacimiento con interacción en calendario
+Ingreso y selección de materias con autocompletado
+Selección de múltiples hobbies mediante checkboxes
+Carga de archivos
+Selección de estado y ciudad dependientes
+Captura de pantallas antes y después de enviar el formulario
+Cierre controlado del navegador
+
+📋 Requisitos Previos
+
+Python 3.6 o superior
+Navegador Chrome instalado
+ChromeDriver compatible con tu versión de Chrome
+
+⚙️ Instalación
+
+Clona este repositorio:
+bashgit clone https://github.com/tu-usuario/automatizacion-formularios-selenium.git
+cd automatizacion-formularios-selenium
+
+Instala las dependencias:
+bashpip install selenium
+
+Asegúrate de tener ChromeDriver instalado y accesible en tu PATH o especifica su ubicación en el script.
+
+🖥️ Uso
+Para ejecutar la automatización, simplemente ejecuta el script principal:
+python main.py
+La automatización realizará las siguientes acciones:
+
+Abrirá Chrome en modo incógnito
+Navegará a https://demoqa.com/automation-practice-form
+Llenará todos los campos del formulario
+Tomará capturas de pantalla antes y después de enviar
+Cerrará el navegador al finalizar
+
+📁 Estructura del Proyecto
+automatizacion-formularios-selenium/
+│
+├── main.py                    # Script principal de automatización
+├── README.md                  # Este archivo
+├── antes_de_enviar.png        # Captura antes de enviar el formulario (generada durante la ejecución)
+└── despues_de_enviar.png      # Captura después de enviar el formulario (generada durante la ejecución)
+
+🧪 Funciones Principales
+
+get_driver(): Inicializa y configura el WebDriver
+datos_texto_formulario(driver): Llena los campos de texto del formulario
+seleccionar_genero(driver): Selecciona la opción de género
+seleccionar_hobbies(driver): Marca las casillas de hobbies
+seleccionar_fecha_nacimiento(driver): Interactúa con el calendario para seleccionar fecha
+seleccionar_imagen(driver): Carga un archivo al formulario
+seleccionar_estado_y_ciudad(driver): Selecciona opciones en menús desplegables
+enviar_formulario(driver): Envía el formulario y captura pantallas
+main(): Función principal que coordina la ejecución
+
+📞 Contacto
+Daniel Pacheco - danielpacosta93@gmail.com
+
+⭐️ Proyecto creado como parte de de una actividad de la clase Pruebas de Software dirijida por el Profesor Sebastian Martinez https://github.com/JuanS3 de automatización con Selenium WebDriver y Python ⭐️
