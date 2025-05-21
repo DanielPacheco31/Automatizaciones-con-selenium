@@ -1,4 +1,5 @@
 📝 Descripción
+
 Este proyecto implementa una automatización completa del formulario "Practice Form" de DemoQA utilizando Selenium WebDriver y Python. La automatización incluye la navegación al sitio, el llenado de todos los campos del formulario, la selección de opciones en menús desplegables, la interacción con calendarios, la carga de archivos y el envío del formulario.
 
 🛠️ Tecnologías Utilizadas
